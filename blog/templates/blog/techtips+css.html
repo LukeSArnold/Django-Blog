@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8" />
+
+		{% load static %}
+		<link rel="stylesheet" type="text/css" href = "{% static 'blog/style.css' %}" />
+                <title>Tony Soprano Blog</title>
+	</head>
+
+	<body>
+		<h1> Tech Tips with CSS </h1>
+		<h2> The current date and time is {% now "jS F Y H:i:s" %} </h2>
+		
+		<div class="navBar">
+			<h2> Site Navigation </h2>
+			<ol>
+				<li> <a href= "../">Blog</a></li>
+                                <li> <a href= "../archive"> Archive </a></li>
+                                <li> <a href= "../about">About</a> </li>
+                                <li> <a href="../tech-css"> Tech Tips - CSS Edition</a></li>
+                                <li> <a href="../tech+css"> Tech Tips HTML Edition</a></li>
+				<li> <a href="../plan">Plan</a></li>
+
+			</ol>
+		</div>
+		<div style = "background-color: #6699cc">
+			<h2> HTML ELEMENTS </h2>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements> &lt;h1&gt; </a> </pre>
+			<ul class= "striped-list-blue"> 
+				<li> The h1 tag can be used to create header text </li>
+				<li> This can be used to create emphasis and draw attention to a certain piece of text </li>
+				<li> The h1 tag is a block level element </li> 
+			</ul>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p> &lt;p&gt; </a> </pre>
+			<ul class ="striped-list-blue">
+				<li> The p tag can be used to create paragraph text </li>
+				<li> This can be used to create larger blocks of text that don't require specific attributes (such as a img or header tag) </li>
+				<li> Paragraph is a block level element, taking up a set amount of space </li>
+				<li> Different elements can be nested within the paragraph </li> 
+			</ul>
+			<pre style = "font-size: 30pt"><a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img> &lt;img&gt; </a> </pre> 
+			<ul class = "striped-list-blue">	
+			 	<li> The img tag is used to imbed a specific image into an html document </li> 
+				<li> The img tag can pull image from a local harddrive or from a specific source on the internet </li>
+				<li> The img tag is a inline element </li> 
+			</ul>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol> &lt;ol&gt; </a> </pre>
+			<ul class = "striped-list-blue">
+				<li> The ol tag is used to create ordered lists within an html document </li> 
+				<li> The ol tag is a block level elelemtn </li>
+				<li> The ol tag is combined with the &lt;li&gt; tag to create list elements </li>
+				<li> The ol tag is similar to the ul tag, the latter of which uses general bullet points </li>
+			</ul>
+		</div>
+		<div style="background-color: orange">
+			<h2> HTML CHARACTER ENTITIES </h2>
+			<pre style = "font-size: 30pt"> &lt; </pre>
+			<ul class = "striped-list-orange">
+				<li> The &lt; entity is referred to as an ending tag </li>
+				<li> HTML uses this symbol to show when a html element is done being declared </li>
+			</ul>
+			<pre style = "font-size: 30pt"> &#38; </pre>
+			<ul class = "striped-list-orange">
+				<li> The &#38; entity is used to denote a special character so it can be written as plain text </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> &quot; </pre>
+			<ul class = "striped-list-orange">
+				<li> The &quot; element is interpreted as the beginning and end of an attribute's value.</li>
+				<li> For example, you would use the &quot; element when denoting a specific style of an element <br> 
+				<pre> &lt; ul style = &quot;font-size: 30pt&quot; &gt; </pre>
+				</li>
+			</ul>
+
+
+		</div>
+		<div style="background-color: magenta">
+			<h2> CSS SELECTORS </h2>
+			<pre style = "font-size: 30pt"> .class </pre>
+			<ul class = "striped-list-magenta">
+				<li> The CSS class selector matches elements based on the contents of their class attribute. </li>
+				<li> You can assign a class to an html element by typing class = xclass while defining the element in the opening tags </li>
+			</ul>
+			<pre style = "font-size: 30pt"> :nth-child </pre>
+			<ul class = "striped-list-magenta">
+				<li> The nth-child selector can be used to ascribe specific attributes to specified html child elements </li>
+				<li> For example, using the nth-child selector you can have alternating colors for list elements </li>
+			</ul>
+			<pre style = "font-size: 30pt"> #id </pre>
+			<ul class = "striped-list-magenta">
+				<li> The id tag can be used to ascribe a specific css element to an html element marked with a specific id </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> element </pre>
+			<ul class = "striped-list-magenta">
+				<li> The element selector is used to ascribe a certain attribute to all html elements </li>
+				<li> You can ascribe attributes with css by declaring p { x elements } in the css file </li>
+			</ul> 
+		</div>
+		<div style = "background-color: #566573">
+			<h2> CSS PROPERTIES </h2>
+			<pre style = "font-size: 30pt"> background-color </pre>
+			<ul class = "striped-list-grey">
+				<li> The background-color element is used to change the background color of an element </li> 
+				<li> The background-color element only takes one parameter, which is the name of a color, or the hex value </li>
+			</ul>
+			<pre style = "font-size: 30pt"> color </pre>
+			<ul class = "striped-list-grey">
+				<li> The color element is used to change the color of text within an html document </li>
+				<li> For example you can use the color attribute to change the <code style = "color: white"> color of text </code> </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> font-size </pre>
+			<ul class = "striped-list-grey"> 
+				<li> The font-size element is used to change the size of words in an html document </li>
+				<li> For example, you can <code style = "font-size: 15pt"> change the size of text </code> using the font element </li>
+			</ul> 
+		</div>
+
+	</body>
+</html>
+
+

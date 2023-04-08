@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang = "en">
+        <head>
+                <meta charset="utf-8" />
+
+                {% load static %}
+                <link rel="stylesheet" type="text/css" href = "{% static 'blog/style.css' %}"/>
+                <title>About Me!</title>
+        </head>
+        <body>
+	{% if blog_posts %}
+	{% for blog in blog_posts %}
+	{% if blog.title == blog_title%}
+		<h1> {{blog.title}}</h1>
+		<p> {{blog.content}}</p>
+		
+		<h3> Leave Comment </h3>
+		<form action="{% url 'blog:comment' blog.title%}" method = "post">
+			{% csrf_token %}
+			{{form}}
+			<input type = "submit" value = "Submit">
+		</form>
+
+		<h3> {{blog.comments_set.all|length}} COMMENTS </h2>
+		{% for comments in blog.comments_set.all %}
+		<p> <b>{{comments.commenter}} ({{comments.email}})</b> said this at {{comments.posted}} <br>
+		{{comments.content}} </p>
+		{% endfor %}
+	{% endif %}
+	{% endfor %}
+	{% endif %}
+	</body>
+</html>
+

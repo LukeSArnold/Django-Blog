@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="utf-8" />
+                <title>Tony Soprano Blog</title>
+	</head>
+	<body bgcolor = "#F6DDCC">
+		<center> <h1> <font face="sans-serif"> Tech Tips Without CSS </font> </h1> </center>
+		<h2> The current date and time is {% now "jS F Y H:i:s" %} </h2>
+		<div style="background-color:#DCAE96">
+			<h2> <font face = "sans-serif"> Site Navigation  </font> </h2>
+			<ol> 
+				<li> <a href= "../">Blog</a></li>
+                                <li> <a href= "../archive"> Archive </a></li>
+                                <li> <a href= "../about">About</a> </li>
+                                <li> <a href="../tech-css"> Tech Tips - CSS Edition</a></li>
+                                <li> <a href="../tech+css"> Tech Tips HTML Edition</a></li>
+				<li> <a href="../plan">Plan</a></li>
+
+			</ol>
+		</div>
+		<div style = "background-color: #6699cc">
+			<h2> <font face = "sans-serif"> HTML ELEMENTS </font> </h2>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements> &lt;h1&gt; </a> </pre>
+			<ul> 
+				<li style="background-color: #89CFF0"> <font face = "sans-serif"> The h1 tag can be used to create header text </font> </li>
+				<li> <font face = "sans-serif"> This can be used to create emphasis and draw attention to a certain piece of text </font> </li>
+				<li style="background-color: #89CFF0">  <font face = "sans-serif">The h1 tag is a block level element </font> </li> 
+			</ul>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p> &lt;p&gt; </a> </pre>
+			<ul>
+				<li style="background-color: #89CFF0">  <font face = "sans-serif"> The p tag can be used to create paragraph text </font> </li>
+				<li> <font face = "sans-serif"> This can be used to create larger blocks of text that don't require specific attributes (such as a img or header tag) </font> </li>
+				<li style="background-color: #89CFF0">  <font face = "sans-serif"> Paragraph is a block level element, taking up a set amount of space </font> </li>
+				<li>  <font face = "sans-serif"> Different elements can be nested within the paragraph </font> </li> 
+			</ul>
+			<pre style = "font-size: 30pt"><a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img> &lt;img&gt; </a> </pre> 
+			<ul>	
+				<li style="background-color: #89CFF0">  <font face = "sans-serif">The img tag is used to imbed a specific image into an html document </font> </li> 
+				<li> <font face = "sans-serif"> The img tag can pull image from a local harddrive or from a specific source on the internet </font> </li>
+				<li style="background-color: #89CFF0">  <font face = "sans-serif"> The img tag is a inline element </font> </li> 
+			</ul>
+			<pre style = "font-size: 30pt"> <a href=https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol> &lt;ol&gt; </a> </pre>
+			<ul>
+				<li style="background-color: #89CFF0">  <font face = "sans-serif">The ol tag is used to create ordered lists within an html document </font> </li> 
+				<li> <font face = "sans-serif">The ol tag is a block level elelemtn </font> </li>
+				<li style="background-color: #89CFF0"> <font face = "sans-serif"> The ol tag is combined with the &lt;li&gt; tag to create list elements </font> </li>
+				<li> <font face = "sans-serif">The ol tag is similar to the ul tag, the latter of which uses general bullet points </font> </li>
+			</ul>
+		</div>
+		<div style="background-color: orange">
+			<h2> HTML CHARACTER ENTITIES </h2>
+			<pre style = "font-size: 30pt"> &lt; </pre>
+			<ul>
+				<li style=" background-color: darkorange">  <font face = "sans-serif"> The &lt; entity is referred to as an ending tag </font> </li>
+				<li> <font face = "sans-serif"> HTML uses this symbol to show when a html element is done being declared </font> </li>
+			</ul>
+			<pre style = "font-size: 30pt"> &#38; </pre>
+			<ul>
+				<li style=" background-color: darkorange"> <font face = "sans-serif"> The &#38; entity is used to denote a special character so it can be written as plain text </font> </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> &quot; </pre>
+			<ul>
+				<li style=" background-color: darkorange"> <font face = "sans-serif"> The &quot; element is interpreted as the beginning and end of an attribute's value. </font> </li>
+				<li>  <font face = "sans-serif">For example, you would use the &quot; element when denoting a specific style of an element </font> <br> 
+				<pre> &lt; ul style = &quot;font-size: 30pt&quot; &gt; </pre>
+				> </li>
+			</ul>
+
+
+		</div>
+		<div style="background-color: magenta">
+			<h2> CSS SELECTORS </h2>
+			<pre style = "font-size: 30pt"> .class </pre>
+			<ul>
+				<li style=" background-color: #F705D2"> <font face = "sans-serif"> The CSS class selector matches elements based on the contents of their class attribute. </font> </li>
+				<li><font face = "sans-serif"> You can assign a class to an html element by typing class = xclass while defining the element in the opening tags </font> </li>
+			</ul>
+			<pre style = "font-size: 30pt"> :nth-child </pre>
+			<ul>
+				<li style=" background-color: #F705D2"> <font face = "sans-serif"> The nth-child selector can be used to ascribe specific attributes to specified html child elements </font> </li>
+				<li>  <font face = "sans-serif"> For example, using the nth-child selector you can have alternating colors for list elements </font> </li>
+			</ul>
+			<pre style = "font-size: 30pt"> #id </pre>
+			<ul>
+				<li style=" background-color: #F705D2"> <font face = "sans-serif"> The id tag can be used to ascribe a specific css element to an html element marked with a specific id </font> </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> element </pre>
+			<ul>
+				<li style=" background-color: #F705D2"> <font face = "sans-serif"> The element selector is used to ascribe a certain attribute to all html elements </font> </li>
+				<li>  <font face = "sans-serif"> You can ascribe attributes with css by declaring p { x elements } in the css file </font> </li>
+			</ul> 
+		</div>
+		<div style = "background-color: #566573">
+			<h2> CSS PROPERTIES </h2>
+			<pre style = "font-size: 30pt"> background-color </pre>
+			<ul>
+				<li style="background-color: #273746"> <font face = "sans-serif"> The background-color element is used to change the background color of an element </font> </li> 
+				<li> <font face = "sans-serif">The background-color element only takes one parameter, which is the name of a color, or the hex value </font> </li>
+			</ul>
+			<pre style = "font-size: 30pt"> color </pre>
+			<ul>
+				<li style="background-color: #273746"> <font face = "sans-serif"> The color element is used to change the color of text within an html document </font> </li>
+				<li>  <font face = "sans-serif"> For example you can use the color attribute to change the <code style = "color: white"> color of text </code> </font> </li>
+			</ul> 
+			<pre style = "font-size: 30pt"> font-size </pre>
+			<ul> 
+				<li style="background-color: #273746">  <font face = "sans-serif"> The font-size element is used to change the size of words in an html document </font> </li>
+				<li>  <font face = "sans-serif"> For example, you can <code style = "font-size: 15pt"> change the size of text </code> using the font element </font> </li>
+			</ul> 
+		</div>
+
+	</body>
+</html>
+
+
+
+

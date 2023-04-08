@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset = "utf-8" />
+		{% load static %}
+		<link rel = "stylesheet" type = "text/css" href = "{% static 'blog/style.css' %}"/>i
+		<title>PLAN</title>
+	</head>
+
+	<body>
+		<h2> The Current Date and Time is {% now "jS F Y H:i:s" %} </h2>
+		<h1> Phase 0: Requirement Specification </h1>
+		The point of this program is to provide our existing blog (as was build in assn0), but to host it through the Django framework, and to make use of the materials and functions that django provides us. We need to implement a comment system, and store our blogs dynamically in an existing database. The assignment will allow us to gain familiarity with databases, how to populate them, and how to define them. <br>
+		As of right now I have no idea how Django works. I've started going through the Django tutorial but I am still pretty confused about a lot of things, particuarly how to imbed python elements into an html script.
+
+		<h1> Phase 1: Sytem Analysis </h1>
+		<p> The program will take in numerous pieces of data. It will need to take in 1. database infromation, 2. HTML templates for the user to populate with their previously existing scripts, 3. client commands (navigating through each webpage and such).
+		<br>
+		The output of the program will be the fully functioning web page. Blog posts that are made within the database of the website will be rendered when a client navigates to that page. Additioanlly, all comment data that a client uploads into the system will populate the webpage as well. In the end the website will exist as a fully functional dynamic page (for viewing and commenting purposes at least). 
+
+		<h1> Phase 2; Design </h2>
+		<p> The basic structure of the webpage will be broken up into a few different elements <br>
+		Models <br>
+		Templates <br>
+		Forms <br>
+		Databases <br>
+		Views <br>
+		URSL <br>
+		The program will take the urls given by the user, and then use the information to call the view. From there, the view will use the argument passed by the url to determine the proper method to call. Once the view checks the corret method it will pull a template from the templates folder, the view then passes this html file to the browser where it is then rendered. 
+		<br><br>
+		The views can popoulate different aspects of the program when given certain urls .For exmaple, when the user clicks on a certain blog post the view will take the url and use it to popoulate a more generic template for the user. This will contain the specific comments and blog information that is related to the url that was passed to the view. <br><br>
+		The specific blog entries will have a dedicated form to post information for comments. When these forms are submitted it will call a view and pass POST information to the view. This will be used to populate new entires in the existing database forms for Blog and Comments that were defined earlier in the program. 
+		<br><br>
+		The models for the program (database tables) consists only of Blog and Comments. The blog will take in a title, time published, author, and content. The comment will take in a name, email, date published, and additionally it will be associated to a primary key for a specific blog. 
+
+		<br>
+		<h1> Phase 3: Implementation </h1> 
+		<h2> View </h2>
+		<p> from django.shortcuts import render, get_object_or_404, redirect <br>
+from django.http import HttpResponse, HttpResponseRedirect <br>
+from django.template import loader <br>
+from django.urls import reverse <br>
+from .models import Blog,Comments <br>
+from .forms import CommentForm <br>
+from django.utils import timezone <br>
+# Create your views here. <br>
+<br> 
+def about(request): <br>
+    template = loader.get_template('blog/about.html') <br>
+    return HttpResponse(template.render())<br>
+<br>
+def techtips_with_css(request):<br>
+    template = loader.get_template('blog/techtips+css.html')<br>
+    return HttpResponse(template.render())<br>
+<br>
+def techtips_without_css(request):<br>
+    template = loader.get_template('blog/techtips-css.html')<br>
+    return HttpResponse(template.render())<br>
+<br>
+def plan(request):<br>
+    template = loader.get_template('blog/plan.html')<br>
+    return HttpResponse(template.render())<br>
+<br>
+def blog_home(request):<br>
+    latest_blog_posts = Blog.objects.order_by('-posted')[:3]<br>
+    template = loader.get_template('blog/blog_home.html')<br>
+    context = {<br>
+            'latest_blog_posts': latest_blog_posts,<br>
+            }<br>
+    return HttpResponse(template.render(context, request))<br>
+<br>
+def blog_archive(request):<br>
+    blog_posts = Blog.objects.order_by('-posted')<br>
+    template = loader.get_template('blog/blog_archive.html')<br>
+    context = {<br>
+            'blog_posts': blog_posts,<br>
+            }<br>
+    return HttpResponse(template.render(context,request))<br>
+<br>
+<br>
+def blog_entry(request, blog_title):<br>
+    blog_posts = Blog.objects.all()<br>
+    template = loader.get_template('blog/blog_entry.html')<br>
+    #return HttpResponse("you are looking at blog %s" % blog_title)<br>
+    context = {<br>
+            'blog_posts': blog_posts,<br>
+            'blog_title': blog_title,<br>
+            'form' : CommentForm,<br>
+            }<br>
+    return HttpResponse(template.render(context, request))<br>
+<br>
+<br>
+<br>
+<br>
+def comment(request, blog_title):<br>
+<br>
+    if request.method == 'POST':<br>
+        user_name = request.POST['commenter_name']<br>
+        user_email = request.POST['email']<br>
+        user_content = request.POST['content']<br>
+        given_blog_title = blog_title<br>
+<br>
+        blog_posts = Blog.objects.all()<br>
+        for iter_blog in blog_posts:<br>
+            if iter_blog.title == given_blog_title:<br>
+                iter_blog.comments_set.create(blog = iter_blog, commenter = user_name, email = user_email, content = user_content,<br>
+                        posted = timezone.now())<br>
+		</p>
+		<h2> MODELS </h2>
+		<p>
+		from django.db import models<br>
+<br>
+<br>
+class Blog(models.Model):<br>
+    title = models.CharField(max_length = 200)<br>
+    author = models.CharField(max_length = 200)<br>
+    content = models.TextField()<br>
+    posted = models.DateTimeField("date published")<br>
+<br>
+    def __str__(self):<br>
+        return self.title<br>
+<br>
+class Comments(models.Model):<br>
+    blog = models.ForeignKey('blog', on_delete = models.CASCADE)<br>
+    commenter = models.CharField(max_length = 200)<br>
+    email = models.EmailField(max_length=254)<br>
+    content = models.TextField()<br>
+    posted = models.DateTimeField("date published")<br>
+<br>
+    def __str__(self):<br>
+        return self.commenter<br>
+		</p>
+		<h2> urls </h2>
+		<p>
+		from django.urls import path<br>
+		<br>
+		from . import views<br>
+		<br>
+		app_name = 'blog'<br>
+		urlpatterns = [<br>
+		path('about/',views.about, name='about'),<br>
+		path('tech+css/',views.techtips_with_css, name = "tech+css"),<br>
+		path('tech-css/',views.techtips_without_css, name = "tech-css"),<br>
+		path('', views.blog_home, name = "blog"),<br>
+		path('archive', views.blog_archive, name = "archives"),<br>
+		path('comment/<str:blog_title>/', views.comment, name = "comment"),<br>
+		path('<str:blog_title>/', views.blog_entry, name = "blog_entry"),<br>
+		path('plan', views.plan, name = 'plan'),<br>
+       
+		<h2> TEMPLATES </h2>
+		<p>
+		All templates for the program are about the same as the previosly created HTML files, minus the incorperation of dynamic elements that are added into the program. The inclusion of such files in this section would be far to long to comfortably fit. 
+		</p>
+		<h1> Phase 4: Testing & Debuggin </h1>
+		<p>
+		While creating the program I ran into many different errors. Primarily, a lot of the problems I had to debug consisted of simple misspellings. Though there were also a few issues with the way I defiend my models. There were numerous problems with my html comment form because of how I set up my FORM class. The biggest issue I had with my entire program was POSTing the data from the comment form into the main program. After a while I figured out how to post the data in the url. I needed to pass a "blog" object in conjunction with the form data in order to properly create a comment object. 
+		</p>
+		<h1> Phase 5: Deployment </h1>
+		<p> Data was successfully uploaded to github </p>
+
+		<h1> Phase 6: Maintenance </h1> 
+		<p> There are defiently some aspects of my program that are poorly written. Primarily, the instatiation of my database objects within my view is quite sloppy. I had difficulties including a blog object in my post data when submitting my comment form data. Therefore, I had to find a slightly jank solution. Additioanlly, I didn't instatiate a specific "id" for my blog objects. Becayse of this I primarily used a blog title as my main indentifier for what object I was dealing with. This resulted in some messy solutions. <br><br>
+		While some things are messy, I know pretty well how the entire program works.
+		<br>
+		My documentation is pretty clear. While some aspects may be a bit messy, due to Django's general format all aspects of the program are still pretty easy to follow. 
+
+	</body>
+</html>
+
+

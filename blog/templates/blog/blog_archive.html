@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+        <head>
+                <meta charset="utf-8" />
+                {% load static %}
+                <link rel="stylesheet" type="text/css" href = "{% static 'blog/style.css' %}" />
+                <title>Tony Soprano Blog</title>
+        </head>
+        <body>
+                 <div class = "navBar">
+                        <h2> Site Navigation </h2>
+                        <ol>
+                                <li> <a href= "">Blog</a></li>
+                                <li> <a href= "about">About</a> </li>
+                                <li> <a href="tech-css"> Tech Tips - CSS Edition</a></li>
+                                <li> <a href="tech+css"> Tech Tips HTML Edition</a></li>
+				<li> <a href="plan">Plan</a></li>
+                        </ol>
+                </div>
+                {% if blog_posts %}
+                {% for blog in blog_posts %}
+                                <div class="navBar">
+                                        <h2><a href = "/blog/{{blog.title}}">{{blog.title}}</a></h2>
+
+                                        <h3>{{blog.author}} </h3>
+                                        <h4>{{blog.comments_set.all|length}} COMMENTS</h4>
+                                        <p> {{blog.content|truncatewords:100}}</p>
+                                </div>
+                        {% endfor %}
+                {% else %}
+                        <p> Blogs </p>
+                {% endif %}
+        </body>
+</html>
+
+
